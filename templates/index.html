@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- Main CSS -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+  
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" 
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" 
+        crossorigin="anonymous">
+
+  <title>Sentiment Analysis App</title>
+</head>
+<body>
+
+  <!-- Left side (Product Info) -->
+  <div class="split left">
+    <div class="centered">
+      <div class="title">PlayStation 5 Bundle</div>
+      <img src="../static/products/prod1.jpg" alt="PS5 Fortnite Bundle" title="PS5 Fortnite Bundle">
+      <p class="product-description">The PlayStation 5 Fortnite Bundle includes the PS5 console and exclusive Fortnite content. Experience next-gen gaming with stunning visuals and lightning-fast load times.</p>
+    </div>
+  </div>
+
+  <!-- Right side (Sentiment & Comments) -->
+  <div class="split right">
+    <div class="centered">
+      <div class="container mt-4 mb-4">
+        <div class="row justify-content-center">
+          <div class="col-md-8">
+
+            <!-- Heading -->
+            <h1 class="title">Sentiment Analysis Dashboard</h1>
+
+            <!-- Sentiment Results -->
+            <div class="mb-3">
+              <p><strong><b>Positive Sentiments:</strong> {{ data.positive }}</b></p>
+              <p><strong><b>Negative Sentiments:</strong> {{ data.negative }}</b></p>
+            </div>
+
+            <!-- Input Form -->
+            <div class="mb-4">
+              <form method="post">
+                <textarea name="text" placeholder="Write your review here..."></textarea>
+                <br>
+                <input type="submit" value="Submit">
+              </form>
+            </div>
+
+            <!-- Reviews Section -->
+            <div class="comment-section bg-white p-3 rounded shadow-sm">
+              <h5>User Reviews</h5>
+              {% for review in data.reviews %}
+                <hr>
+                <div class="review-item mb-2">
+                  <span>{{ review }}</span>
+                </div>
+              {% endfor %}
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
